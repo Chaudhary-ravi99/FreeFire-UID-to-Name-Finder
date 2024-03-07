@@ -2,7 +2,7 @@
 
 
 function getPlayerDetails($uid) {
-    $api_url = "https://ffname.vercel.app/?uid=" . $uid;
+    $api_url = "https://ffuid.vercel.app/?uid=" . $uid;
     $json_data = file_get_contents($api_url);
     return json_decode($json_data, true);
 }
@@ -15,10 +15,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $playerDetails = getPlayerDetails($uid);
 
 
-        if ($playerDetails && isset($playerDetails['region'], $playerDetails['nickname'], $playerDetails['join'])) {
+        if ($playerDetails && isset($playerDetails['region'], $playerDetails['nickname'], $playerDetails['uid'])) {
             $region = $playerDetails['region'];
             $nickname = $playerDetails['nickname'];
-            $server = $playerDetails['join'];
+            $uid = $playerDetails['uid'];
 
             echo "<div class='container'>";
             echo "<h1 class='header-text'>Player Details</h1>";
